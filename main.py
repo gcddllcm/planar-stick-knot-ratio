@@ -45,7 +45,19 @@ def constructLinearEq(point1, point2):
 
 
 
-def generateAllLinearEq(listOfAllPoints):
+# to bring the last line to the end of the list
+def sortingListOfAllLinearEqs(listOfAllLinearEqs):
+    listOfAllLinearEqs_sorted = [];
+    for i in range(0, len(listOfAllLinearEqs), 1):
+        if i != 1:
+            listOfAllLinearEqs_sorted.append(listOfAllLinearEqs[i]);
+    listOfAllLinearEqs_sorted.append(listOfAllLinearEqs[1]);
+    
+    return listOfAllLinearEqs_sorted;
+
+
+
+def generateAllLinearEqs(listOfAllPoints):
     listOfAllLinearEq = [];
     for i in range(0, len(listOfAllPoints), 1):
         for j in range(0, len(listOfAllPoints), 1):
@@ -53,6 +65,8 @@ def generateAllLinearEq(listOfAllPoints):
                 listOfAllLinearEq.append(
                     constructLinearEq(listOfAllPoints[i], listOfAllPoints[j])
                     );
+                
+    listOfAllLinearEq = sortingListOfAllLinearEqs(listOfAllLinearEq);
     
     return listOfAllLinearEq;
                 
@@ -62,4 +76,4 @@ def generateAllLinearEq(listOfAllPoints):
 
 if __name__ == '__main__':
     listOfPoints = addPoints();
-    print(generateAllLinearEq(listOfPoints));
+    print(generateAllLinearEqs(listOfPoints));
