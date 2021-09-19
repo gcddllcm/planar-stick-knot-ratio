@@ -22,27 +22,27 @@ def calculateSlope(point1, point2):
         fr(point2[1] - point1[1]).limit_denominator(), 
         fr(point2[0] - point1[0]).limit_denominator());
     
-    numerator = slope.numerator;
-    denominator = slope.denominator;
-    
-    return [slope, numerator, denominator];
+    return slope;
 
 
 
-# def constructLinearEq(point1, point2):
-#     # y-y1 = m (x-x1)
-#     # y = mx - mx1 + y1
-#     # -mx + y = -mx1 + y1
+def constructLinearEq(point1, point2):
+    # y-y1 = m (x-x1) => y = mx - mx1 + y1 => -mx + y = -mx1 + y1
+    m = calculateSlope(point1, point2);
+    xCoeff = -m * m.denominator;
+    yCoeff = m.denominator;
+    rhs = (-m * point1[0] + point1[1]) * m.denominator;
+    linearCoeff = [xCoeff, yCoeff, rhs];
+    
+    # to get rid of /1 in fraction
+    for i in range(0, 3, 1):
+        if linearCoeff[i].denominator == 1:
+            linearCoeff[i] = linearCoeff[i].numerator;
+    return linearCoeff;
     
     
     
-    
-
-
 
 if __name__ == '__main__':
-    a = fr(5, 9);
-    b = fr(1);
-    print(a.denominator);
-    print(a.numerator);
-    print(b.denominator);
+    listOfPoints = addPoints();
+    print(constructLinearEq(listOfPoints[0], listOfPoints[1]));
