@@ -1,4 +1,4 @@
-from fractions import Fraction as fr
+from fractions import Fraction as fr;
 
 
 # add knot vertices along with the direction
@@ -69,11 +69,24 @@ def generateAllLinearEqs(listOfAllPoints):
     listOfAllLinearEq = sortingListOfAllLinearEqs(listOfAllLinearEq);
     
     return listOfAllLinearEq;
-                
-                
+
+      
     
-    
+def solutionOf2Lines(line1, line2):
+    # will be solved by Cramer's Rule
+    det = line1[0]*line2[1] - line2[0]*line1[1];
+    detX = line1[2]*line2[1] - line2[2]*line1[1];
+    detY = line1[0]*line2[2] - line2[0]*line1[2];
+    x = detX/det;
+    y = detY/det;
+    print(x, y, type(x));
+
+
 
 if __name__ == '__main__':
-    listOfPoints = addPoints();
-    print(generateAllLinearEqs(listOfPoints));
+    # __listOfPoints = addPoints();
+    # __listOfAllLinearEq = generateAllLinearEqs(__listOfPoints);
+    # print(generateAllLinearEqs(__listOfPoints));
+    a = [-4, 9, 0];
+    b = [1, 1, 13];
+    solutionOf2Lines(a, b);
