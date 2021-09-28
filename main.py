@@ -94,6 +94,16 @@ def pointDistance(point1, point2):
 
 
 
+def lengthRatio(point1, point2, point3):
+    # point1 := initial point, point2 := internal point, point3 := terminal point
+    net_length = pointDistance(point1, point3);
+    __1to2 = pointDistance(point1, point2);
+    __2to3 = pointDistance(point2, point3);
+    return (__1to2/net_length, __2to3/net_length);
+
+
+
+
 if __name__ == '__main__':
     __listOfPoints = addPoints();
     __listOfAllLinearEq = generateAllLinearEqs(__listOfPoints);
