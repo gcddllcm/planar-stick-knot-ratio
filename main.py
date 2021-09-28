@@ -2,22 +2,6 @@ from fractions import Fraction as fr;
 import math as m;
 
 
-# add knot vertices along with the direction
-def addPoints(): 
-    z1 = (0, 0);
-    z2 = (9, 4);
-    z3 = (5, 8);
-    z4 = (2, 5);
-    z5 = (1, 7);
-    z6 = (9, 7);
-    z7 = (5, 1);
-    z8 = (0, 6);
-    z9 = (2.39, 6.39);
-    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
-    
-    return listOfPoints;
-
-
 
 def calculateSlope(point1, point2):
     slope = fr(
@@ -86,8 +70,8 @@ def solutionOf2Lines(line1, line2):
 
 
 def pointDistance(point1, point2):
-    x1, y1 = point1[0], point1[2];
-    x2, y2 = point2[0], point2[2];
+    x1, y1 = point1[0], point1[1];
+    x2, y2 = point2[0], point2[1];
     d = m.sqrt(
         (y2-y1)**2 + (x2-x1)**2
     );
@@ -107,8 +91,8 @@ def lengthRatio(point1, point2, point3):
 
 
 def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
+    listOfPoints.append(listOfPoints[0]);
     listOfIne = [];
-    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
     
     for i in range(0, len(listOfCrossingTuple), 1):
         line1 = listOfAllEqs[listOfCrossingTuple[i][0]-1];
@@ -116,6 +100,7 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         
         # first and second points of line1
         fpLine1 = listOfPoints[listOfCrossingTuple[i][0]-1];
+        print(fpLine1)
         spLine1 = listOfPoints[listOfCrossingTuple[i][0]];
         
         # first and second points of line2
@@ -125,19 +110,46 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         solution = solutionOf2Lines(line1, line2);
         
         # ratio1_1 := ratio of the line number 1 and for the first var
-        (ratio1_1, ratio1_2) = lengthRatio(fpLine1, solution, spLine1);
-        (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2);
+        (ratio1_1, ratio1_2) = lengthRatio(fpLine1, solution, spLine1); ###
+        (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2); ###
         
-        lhs = "f{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
-        rhs = "f{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
-        inequality = lhs + ">" + rhs;
+        lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
+        rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+        inequality = lhs + " > " + rhs;
         
         listOfIne.append(inequality);
+        print(listOfIne[i]);
 
+
+
+# add knot vertices along with the direction
+def addPoints(): 
+    z1 = (0, 0);
+    z2 = (9, 4);
+    z3 = (5, 8);
+    z4 = (2, 5);
+    z5 = (1, 7);
+    z6 = (9, 7);
+    z7 = (5, 1);
+    z8 = (0, 6);
+    z9 = (2.39, 6.39);
+    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    
+    return listOfPoints;
+
+
+
+def addCrossing():
+    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    return listOfCrossingTuple;
 
 
 
 if __name__ == '__main__':
     __listOfPoints = addPoints();
+    __listOfCrossingTuple = addCrossing();
     __listOfAllLinearEq = generateAllLinearEqs(__listOfPoints);
     print(__listOfAllLinearEq);
+    print(__listOfCrossingTuple);
+    print(__listOfPoints);
+    inequalityGenerator(__listOfAllLinearEq, __listOfCrossingTuple, __listOfPoints);
