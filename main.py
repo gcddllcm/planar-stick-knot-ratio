@@ -62,8 +62,12 @@ def solutionOf2Lines(line1, line2):
     det = line1[0]*line2[1] - line2[0]*line1[1];
     detX = line1[2]*line2[1] - line2[2]*line1[1];
     detY = line1[0]*line2[2] - line2[0]*line1[2];
-    x = detX/det;
-    y = detY/det;
+    x = fr(
+        fr(detX).limit_denominator(), det
+    );
+    y = fr(
+        fr(detY).limit_denominator(), det
+    );
     
     return (x, y);
 
@@ -75,6 +79,7 @@ def pointDistance(point1, point2):
     d = m.sqrt(
         (y2-y1)**2 + (x2-x1)**2
     );
+    d = fr(d).limit_denominator();
     
     return d;
 
@@ -86,12 +91,12 @@ def lengthRatio(point1, point2, point3):
     __1to2 = pointDistance(point1, point2);
     __2to3 = pointDistance(point2, point3);
     
-    return (__1to2/net_length, __2to3/net_length);
+    return (fr(__1to2, net_length).limit_denominator(), fr(__2to3, net_length).limit_denominator());
 
 
 
 def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
-    listOfPoints.append(listOfPoints[0]);
+    listOfPoints.append(listOfPoints[0]); # append the first point to the last position to avoid index out of range and in a planar stick knot, we always connect the first point with the last point
     listOfIne = [];
     
     for i in range(0, len(listOfCrossingTuple), 1):
@@ -100,7 +105,6 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         
         # first and second points of line1
         fpLine1 = listOfPoints[listOfCrossingTuple[i][0]-1];
-        print(fpLine1)
         spLine1 = listOfPoints[listOfCrossingTuple[i][0]];
         
         # first and second points of line2
@@ -110,11 +114,18 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         solution = solutionOf2Lines(line1, line2);
         
         # ratio1_1 := ratio of the line number 1 and for the first var
-        (ratio1_1, ratio1_2) = lengthRatio(fpLine1, solution, spLine1); ###
-        (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2); ###
+        (ratio1_1, ratio1_2) = lengthRatio(fpLine1, solution, spLine1);
+        (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2);
         
-        lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
-        rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+        
+        if listOfCrossingTuple[i][0] == len(listOfPoints)-1:
+            lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{1}";
+        else: lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
+        
+        if listOfCrossingTuple[i][1] == len(listOfPoints)-1:
+            rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{1}";
+        else: rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+        
         inequality = lhs + " > " + rhs;
         
         listOfIne.append(inequality);
@@ -140,7 +151,9 @@ def addPoints():
 
 
 def addCrossing():
+    # (starting point of line1, starting point of line2) and 
     listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    
     return listOfCrossingTuple;
 
 
