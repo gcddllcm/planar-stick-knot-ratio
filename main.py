@@ -1,4 +1,5 @@
 from fractions import Fraction as fr;
+import math as m;
 
 
 # add knot vertices along with the direction
@@ -79,14 +80,21 @@ def solutionOf2Lines(line1, line2):
     detY = line1[0]*line2[2] - line2[0]*line1[2];
     x = detX/det;
     y = detY/det;
-    print(x, y, type(x));
+    return (x, y);
+
+
+
+def pointDistance(point1, point2):
+    x1, y1 = point1[0], point1[2];
+    x2, y2 = point2[0], point2[2];
+    d = m.sqrt(
+        (y2-y1)**2 + (x2-x1)**2
+    );
+    return d;
 
 
 
 if __name__ == '__main__':
-    # __listOfPoints = addPoints();
-    # __listOfAllLinearEq = generateAllLinearEqs(__listOfPoints);
-    # print(generateAllLinearEqs(__listOfPoints));
-    a = [-4, 9, 0];
-    b = [1, 1, 13];
-    solutionOf2Lines(a, b);
+    __listOfPoints = addPoints();
+    __listOfAllLinearEq = generateAllLinearEqs(__listOfPoints);
+    print(__listOfAllLinearEq);
