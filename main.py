@@ -80,6 +80,7 @@ def solutionOf2Lines(line1, line2):
     detY = line1[0]*line2[2] - line2[0]*line1[2];
     x = detX/det;
     y = detY/det;
+    
     return (x, y);
 
 
@@ -90,6 +91,7 @@ def pointDistance(point1, point2):
     d = m.sqrt(
         (y2-y1)**2 + (x2-x1)**2
     );
+    
     return d;
 
 
@@ -99,7 +101,38 @@ def lengthRatio(point1, point2, point3):
     net_length = pointDistance(point1, point3);
     __1to2 = pointDistance(point1, point2);
     __2to3 = pointDistance(point2, point3);
+    
     return (__1to2/net_length, __2to3/net_length);
+
+
+
+def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
+    listOfIne = [];
+    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    
+    for i in range(0, len(listOfCrossingTuple), 1):
+        line1 = listOfAllEqs[listOfCrossingTuple[i][0]-1];
+        line2 = listOfAllEqs[listOfCrossingTuple[i][1]-1];
+        
+        # first and second points of line1
+        fpLine1 = listOfPoints[listOfCrossingTuple[i][0]-1];
+        spLine1 = listOfPoints[listOfCrossingTuple[i][0]];
+        
+        # first and second points of line2
+        fpLine2 = listOfPoints[listOfCrossingTuple[i][1]-1];
+        spLine2 = listOfPoints[listOfCrossingTuple[i][1]];
+        
+        solution = solutionOf2Lines(line1, line2);
+        
+        # ratio1_1 := ratio of the line number 1 and for the first var
+        (ratio1_1, ratio1_2) = lengthRatio(fpLine1, solution, spLine1);
+        (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2);
+        
+        lhs = "f{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
+        rhs = "f{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+        inequality = lhs + ">" + rhs;
+        
+        listOfIne.append(inequality);
 
 
 
