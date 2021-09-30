@@ -129,22 +129,46 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         inequality = lhs + " > " + rhs;
         
         listOfIne.append(inequality);
-        print(listOfIne[i]);
+        print(f"\n{i+1}) {listOfIne[i]}\n");
 
 
 
 # add knot vertices along with the direction
 def addPoints(): 
-    z1 = (0, 0);
-    z2 = (9, 4);
-    z3 = (5, 8);
-    z4 = (2, 5);
-    z5 = (1, 7);
-    z6 = (9, 7);
-    z7 = (5, 1);
-    z8 = (0, 6);
-    z9 = (2.39, 6.39);
-    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    # 8_1
+    # z1 = (0, 0);
+    # z2 = (9, 4);
+    # z3 = (5, 8);
+    # z4 = (2, 5);
+    # z5 = (1, 7);
+    # z6 = (9, 7);
+    # z7 = (5, 1);
+    # z8 = (0, 6);
+    # z9 = (2, 6);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    
+    
+    #8_2
+    # z1 = (0, 5);
+    # z2 = (5, 9);
+    # z3 = (10, 6);
+    # z4 = (4, 2);
+    # z5 = (1, 7);
+    # z6 = (9, 9);
+    # z7 = (8, 3);
+    # z8 = (1, 8);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8];
+    
+    
+    #8_4
+    z1 = (-3, -2);
+    z2 = (-2, 4);
+    z3 = (4, 2);
+    z4 = (-4, 1);
+    z5 = (1, -3);
+    z6 = (0, 5);
+    z7 = (4, -1);
+    listOfPoints = [z1, z2, z3, z4, z5, z6, z7];
     
     return listOfPoints;
 
@@ -152,7 +176,15 @@ def addPoints():
 
 def addCrossing():
     # (starting point of line1, starting point of line2) and 
-    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    
+    # 8_1
+    # listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    
+    # 8_2
+    # listOfCrossingTuple = [(4, 1), (1, 7), (5, 1), (2, 5), (6, 2), (3, 6), (7, 3)];
+    
+    # 8_4
+    listOfCrossingTuple = [(4, 1), (1, 3), (5, 2), (2, 6), (6, 3), (3, 5), (5, 7), (7, 4)];
     
     return listOfCrossingTuple;
 
