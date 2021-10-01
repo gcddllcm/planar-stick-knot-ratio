@@ -118,13 +118,21 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
         (ratio2_1, ratio2_2) = lengthRatio(fpLine2, solution, spLine2);
         
         
+        # if listOfCrossingTuple[i][0] == len(listOfPoints)-1:
+        #     lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{1}";
+        # else: lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
+        
+        # if listOfCrossingTuple[i][1] == len(listOfPoints)-1:
+        #     rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{1}";
+        # else: rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+        
         if listOfCrossingTuple[i][0] == len(listOfPoints)-1:
-            lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{1}";
-        else: lhs = f"{ratio1_1} z{listOfCrossingTuple[i][0]} + {ratio1_2} z{listOfCrossingTuple[i][0]+1}";
+            lhs = f"{ratio1_2} z{listOfCrossingTuple[i][0]} + {ratio1_1} z{1}";
+        else: lhs = f"{ratio1_2} z{listOfCrossingTuple[i][0]} + {ratio1_1} z{listOfCrossingTuple[i][0]+1}";
         
         if listOfCrossingTuple[i][1] == len(listOfPoints)-1:
-            rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{1}";
-        else: rhs = f"{ratio2_1} z{listOfCrossingTuple[i][1]} + {ratio2_2} z{listOfCrossingTuple[i][1]+1}";
+            rhs = f"{ratio2_2} z{listOfCrossingTuple[i][1]} + {ratio2_1} z{1}";
+        else: rhs = f"{ratio2_2} z{listOfCrossingTuple[i][1]} + {ratio2_1} z{listOfCrossingTuple[i][1]+1}";
         
         inequality = lhs + " > " + rhs;
         
