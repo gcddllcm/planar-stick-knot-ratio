@@ -80,7 +80,7 @@ def pointDistance(point1, point2):
         (y2-y1)**2 + (x2-x1)**2
     );
     d = fr(d).limit_denominator();
-    
+    # print(point1, point2, d);
     return d;
 
 
@@ -136,16 +136,16 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
 # add knot vertices along with the direction
 def addPoints(): 
     # 8_1
-    # z1 = (0, 0);
-    # z2 = (9, 4);
-    # z3 = (5, 8);
-    # z4 = (2, 5);
-    # z5 = (1, 7);
-    # z6 = (9, 7);
-    # z7 = (5, 1);
-    # z8 = (0, 6);
-    # z9 = (2, 6);
-    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    z1 = (0, 0);
+    z2 = (9, 4);
+    z3 = (5, 8);
+    z4 = (2, 5);
+    z5 = (1, 7);
+    z6 = (9, 7);
+    z7 = (5, 1);
+    z8 = (0, 6);
+    z9 = (2, 6);
+    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
     
     
     #8_2
@@ -161,14 +161,14 @@ def addPoints():
     
     
     #8_4
-    z1 = (-3, -2);
-    z2 = (-2, 4);
-    z3 = (4, 2);
-    z4 = (-4, 1);
-    z5 = (1, -3);
-    z6 = (0, 5);
-    z7 = (4, -1);
-    listOfPoints = [z1, z2, z3, z4, z5, z6, z7];
+    # z1 = (-3, -2);
+    # z2 = (-2, 4);
+    # z3 = (4, 2);
+    # z4 = (-4, 1);
+    # z5 = (1, -3);
+    # z6 = (0, 5);
+    # z7 = (4, -1);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7];
     
     return listOfPoints;
 
@@ -178,13 +178,13 @@ def addCrossing():
     # (starting point of line1, starting point of line2) and 
     
     # 8_1
-    # listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
     
     # 8_2
     # listOfCrossingTuple = [(4, 1), (1, 7), (5, 1), (2, 5), (6, 2), (3, 6), (7, 3)];
     
     # 8_4
-    listOfCrossingTuple = [(4, 1), (1, 3), (5, 2), (2, 6), (6, 3), (3, 5), (5, 7), (7, 4)];
+    # listOfCrossingTuple = [(4, 1), (1, 3), (5, 2), (2, 6), (6, 3), (3, 5), (5, 7), (7, 4)];
     
     return listOfCrossingTuple;
 
