@@ -144,16 +144,16 @@ def inequalityGenerator(listOfAllEqs, listOfCrossingTuple, listOfPoints):
 # add knot vertices along with the direction
 def addPoints(): 
     # 8_1
-    z1 = (0, 0);
-    z2 = (9, 4);
-    z3 = (5, 8);
-    z4 = (2, 5);
-    z5 = (1, 7);
-    z6 = (9, 7);
-    z7 = (5, 1);
-    z8 = (0, 6);
-    z9 = (2, 6);
-    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    # z1 = (0, 0);
+    # z2 = (9, 4);
+    # z3 = (5, 8);
+    # z4 = (2, 5);
+    # z5 = (1, 7);
+    # z6 = (9, 7);
+    # z7 = (5, 1);
+    # z8 = (0, 6);
+    # z9 = (2, 6);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
     
     
     #8_2
@@ -168,6 +168,19 @@ def addPoints():
     # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8];
     
     
+    #8_3
+    z1 = (4, 10);
+    z2 = (12, 16);
+    z3 = (10, 8);
+    z4 = (14, 8);
+    z5 = (8, 0);
+    z6 = (22, 12);
+    z7 = (0, 16);
+    z8 = (12, 4);
+    z9 = (14, 10);
+    listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    
+    
     #8_4
     # z1 = (-3, -2);
     # z2 = (-2, 4);
@@ -178,6 +191,31 @@ def addPoints():
     # z7 = (4, -1);
     # listOfPoints = [z1, z2, z3, z4, z5, z6, z7];
     
+    
+    #8_5
+    # z1 = (3, 10);
+    # z2 = (2, 1);
+    # z3 = (11, 4);
+    # z4 = (5, 6);
+    # z5 = (4, 0);
+    # z6 = (10, 7);
+    # z7 = (0, 6);
+    # z8 = (7, 4);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8];
+    
+    
+    # 8_1v2
+    # z1 = (0, 0);
+    # z2 = (12, 4);
+    # z3 = (8, 9);
+    # z4 = (6, 4);
+    # z5 = (0, 7);
+    # z6 = (12, 7);
+    # z7 = (8, 0);
+    # z8 = (-1, 4);
+    # z9 = (5, 6);
+    # listOfPoints = [z1, z2, z3, z4, z5, z6, z7, z8, z9];
+    
     return listOfPoints;
 
 
@@ -186,13 +224,22 @@ def addCrossing():
     # (starting point of line1, starting point of line2) and 
     
     # 8_1
-    listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
+    # listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
     
     # 8_2
-    # listOfCrossingTuple = [(4, 1), (1, 7), (5, 1), (2, 5), (6, 2), (3, 6), (7, 3)];
+    # listOfCrossingTuple = [(4, 1), (1, 7), (5, 1), (2, 5), (6, 2), (3, 6), (7, 3), (7, 5)];
+    
+    # 8_3
+    listOfCrossingTuple = [(1, 7), (7, 9), (6, 1), (2, 6), (9, 2), (3, 8), (8, 4), (4, 7)];
     
     # 8_4
     # listOfCrossingTuple = [(4, 1), (1, 3), (5, 2), (2, 6), (6, 3), (3, 5), (5, 7), (7, 4)];
+    
+    #8_5
+    # listOfCrossingTuple = [(6, 1), (1, 7), (8, 6), (7, 4), (3, 8), (4, 2), (2, 5), (5, 3)];
+    
+    # 8_1v2
+    # listOfCrossingTuple = [(1, 7), (6, 1), (2, 6), (5, 2), (3, 5), (9, 4), (4, 8), (7, 9)];
     
     return listOfCrossingTuple;
 
